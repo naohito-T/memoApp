@@ -1,3 +1,4 @@
+# nodeのモジュールをgitの追跡から外しますよという意味
 node_modules/**/*
 .expo/*
 npm-debug.*

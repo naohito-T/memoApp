@@ -8,7 +8,8 @@ export default function App() {
   return (
     // JSXゾーン
     <View style={styles.container}>
-      <Hello></Hello>
+      <Hello bang>World</Hello>
+      <Hello bang style={{ fontSize: 16 }}>Small World</Hello>
       <Text>Open up App.js to start working on your app!</Text>
       {/* JSXコメントの書きかた */}
       {/* eslint-disable-next-line */}

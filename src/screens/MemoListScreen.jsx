@@ -12,7 +12,7 @@ export default function MemoListScreen() {
       {/* eslint-disable-next-line */}
       <AppBar />
       <MemoList />
-      <CircleButton>+</CircleButton>
+      <CircleButton name="plus" />
     </View>
   );
 }

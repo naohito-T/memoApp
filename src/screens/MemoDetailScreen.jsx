@@ -26,7 +26,7 @@ export default function MemoDetailScreen() {
       styleが上書きできない。そのためstyleを上書きする方法を以下で実施
       step1 CircleButton側でpropsにstyleが入ってくることを定義
       step2 こちら側からstyleを渡してあげる */}
-      <CircleButton style={{ top: 160, bottom: 'auto' }}>+</CircleButton>
+      <CircleButton style={{ top: 160, bottom: 'auto' }} name="edit-2" />
       {/* オブジェクトを渡して上げるには{ { } }で囲んでね。 */}
     </View>
   );

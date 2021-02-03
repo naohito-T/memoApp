@@ -1,17 +1,28 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { string } from 'prop-types';
+import { string, shape } from 'prop-types';
+// import { Octicons } from '@expo/vector-icons';
 
 export default function CircleButton(props) {
-  const { children } = props;
+  // 以下は分割代入
+  // children = props.children とするのではなく
+  // { children, style } = props; これで一気に代入できる。
+  const { children, style } = props;
   return (
-    <View style={styles.circleButton}>
-      <Text style={styles.circleButtonLable}>{children}</Text>
+    <View style={[styles.circleButton, style]}>
+      {/* <Octicons name="plus" size={24} color="black" /> */}
     </View>
   );
 }
 CircleButton.propTypes = {
   children: string.isRequired,
+  // shape()オブジェクトの形を定義する。どんな形のオブジェクトかを以下で定義する。
+  // shape()にするとどんな形のオブジェクトでも対応ができる意味。
+  style: shape(),
+};
+
+CircleButton.defaultProps = {
+  style: null,
 };
 
 const styles = StyleSheet.create({

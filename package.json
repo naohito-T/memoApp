@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
-    "comment": "--save-devを実行すると以下に記載されます。",
     "eslint": "^7.18.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",

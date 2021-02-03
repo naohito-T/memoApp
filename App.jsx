@@ -8,6 +8,6 @@ import MemoCreateScreen from './src/screens/MemoCreateScreen';
 export default function App() {
   return (
     // JSXゾーン
-    <MemoCreateScreen />
+    <MemoEditScreen />
   );
 }

@@ -1,21 +1,22 @@
 import React from 'react';
 import {
-  View, TextInput, StyleSheet, KeyboardAvoidingView,
+  View, TextInput, StyleSheet,
 } from 'react-native';
 import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
+import KeyboardSafeView from '../components/KeyboardSafeView';
 
 
 export default function MemoEditScreen() {
   return (
     // KeyboardAvoidingViewはキーボードが表示された時に自動的に画面をリサイズしてくれる。
-    <KeyboardAvoidingView style={styles.container} behavior="height">
+    <KeyboardSafeView style={styles.container}>
       <AppBar />
       <View style={styles.inputContainer}>
-          <TextInput value="買い物リスト" multiline style={styles.input} />
+        <TextInput value="買い物リスト" multiline style={styles.input} />
       </View>
       <CircleButton name="check" />
-    </KeyboardAvoidingView>
+    </KeyboardSafeView>
   );
 }
 

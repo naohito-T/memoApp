@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
@@ -7,12 +7,37 @@ import Button from '../components/Button';
 
 export default function LogInScreen(props) {
   const { navigation } = props;
+  // []配列からemailとsetEmailを取り出してる。こちらも分割代入
+  // email 保持したい値(状態) setEmail 値を更新する関数
+  // emailもsetEmailも変数の名前は自由。ただし慣習としてsetXXXするのが慣例
+  const [email, setEmail] = useState(''); // ('')初期値
+  const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>Log In</Text>
-        <TextInput style={styles.input} value="Email Address" />
-        <TextInput style={styles.input} value="Password" />
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={(text) => {
+            setEmail(text);
+          }}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          placeholder="Email Address"
+          // iOSで登録があればキーチェーンから値を取ってくれる。
+          textContentType="emailAddress"
+        />
+        <TextInput
+          style={styles.input}
+          value={password}
+          onChangeText={(text) => { setPassword(text); }}
+          autoCapitalize="none"
+          placeholder="Password"
+          secureTextEntry
+          // iOSで登録があればキーチェーンから値を取ってくれる。
+          textContentType="password"
+        />
         <Button
           label="Submit"
           onPress={() => {

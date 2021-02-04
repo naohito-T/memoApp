@@ -6,6 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 export default function MemoList() {
+  // reactHooksはプレフィックスにuseが付く。
   const navigation = useNavigation();
   return (
     <View>

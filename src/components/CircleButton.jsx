@@ -1,17 +1,17 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { string, shape } from 'prop-types';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { string, shape, func } from 'prop-types';
 import { Feather } from '@expo/vector-icons';
 
 export default function CircleButton(props) {
   // 以下は分割代入
   // children = props.children とするのではなく
   // { children, style } = props; これで一気に代入できる。
-  const { style, name } = props;
+  const { style, name, onPress } = props;
   return (
-    <View style={[styles.circleButton, style]}>
+    <TouchableOpacity style={[styles.circleButton, style]} onPress={onPress}>
       <Feather name={name} size={32} color="white" />
-    </View>
+    </TouchableOpacity>
   );
 }
 CircleButton.propTypes = {
@@ -19,10 +19,13 @@ CircleButton.propTypes = {
   // shape()にするとどんな形のオブジェクトでも対応ができる意味。
   style: shape(),
   name: string.isRequired,
+  // ユーザ
+  onPress: func,
 };
 
 CircleButton.defaultProps = {
   style: null,
+  onPress: func,
 };
 
 const styles = StyleSheet.create({

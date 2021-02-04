@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
-  View, Text, TextInput, StyleSheet, TouchableOpacity,
+  View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native';
+import firebase from 'firebase';
 
 import Button from '../components/Button';
 
@@ -12,6 +13,23 @@ export default function SignUpScreen(props) {
   // emailもsetEmailも変数の名前は自由。ただし慣習としてsetXXXするのが慣例
   const [email, setEmail] = useState(''); // ('')初期値
   const [password, setPassword] = useState('');
+  // .then()は会員登録が成功したら実行される。
+  // .catch()は例外処理。エラーが発生してもアプリがクラッシュすることなくログを出力してくれアプリの動作は継続できる。
+  const handlePress = () => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const { user } = userCredential;
+        console.log(user.uid);
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'MemoList' }],
+        });
+      })
+      .catch((error) => {
+        console.log(error.code, error.message);
+        Alert.alert(error.code);
+      });
+  };
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
@@ -40,12 +58,7 @@ export default function SignUpScreen(props) {
         />
         <Button
           label="Submit"
-          onPress={() => {
-            navigation.reset({
-              index: 0,
-              routes: [{ name: 'MemoList' }],
-            });
-          }}
+          onPress={handlePress}
         />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registerd?</Text>

@@ -6,18 +6,18 @@ import {
 import AppBar from '../components/AppBar';
 import Button from '../components/Button';
 
-export default function LogInScreen() {
+export default function SignUpScreen() {
   return (
     <View style={styles.container}>
       <AppBar />
       <View style={styles.inner}>
-        <Text style={styles.title}>Log In</Text>
+        <Text style={styles.title}>Sing Up</Text>
         <TextInput style={styles.input} value="Email Address" />
         <TextInput style={styles.input} value="Password" />
         <Button label="Submit" />
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Not registered?</Text>
-          <Text style={styles.footerLink}>Sign up here!</Text>
+          <Text style={styles.footerText}>Already registerd?</Text>
+          <Text style={styles.footerLink}>Log In.</Text>
         </View>
       </View>
     </View>

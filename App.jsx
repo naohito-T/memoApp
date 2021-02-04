@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 
 import MemoListScreen from './src/screens/MemoListScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen';
@@ -18,22 +18,38 @@ export default function App() {
       {/* initialRouteNameを変更すると自由にコンポーネントを移動できる。 */}
       {/* Stack.Navigatorはページの履歴を積み上げてくれる。 */}
       <Stack.Navigator
-        initialRouteName="LogIn"
+        initialRouteName="SignUp"
         screenOptions={{
           headerStyle: { backgroundColor: '#467FD3' },
           headerTitleStyle: { color: '#fff' },
           haaderTitle: 'Memo App',
           headerTintColor: '#fff',
           headerBackTitle: 'Back',
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          gestureEnabled: true,
+          gestureDirection: 'horizontal',
         }}
       >
         {/* 以下で定義されているものは自動的にreact-navigationが登録してくれる */}
+        {/* screenとして登録されているためnavigation propsを受け取れる */}
         <Stack.Screen name="MemoList" component={MemoListScreen} />
         <Stack.Screen name="MemoDetail" component={MemoDetailScreen} />
         <Stack.Screen name="MemoEdit" component={MemoEditScreen} />
         <Stack.Screen name="MemoCreate" component={MemoCreateScreen} />
-        <Stack.Screen name="LogIn" component={LogInScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen
+          name="LogIn"
+          component={LogInScreen}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+          }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
 

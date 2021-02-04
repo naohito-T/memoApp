@@ -19,6 +19,7 @@
     ],
     "rules": {
         "no-use-before-define": 0,
-        "import/no-unresolved": "off"
+        "import/no-unresolved": "off",
+        "react/prop-types": ["error", { "ignore" : ["navigation"]}]
     }
 }

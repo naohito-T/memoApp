@@ -3,7 +3,6 @@
     "name": "memoApp",
     "slug": "memoApp",
     "version": "1.0.0",
-    "comment": "expoのサイトのリストで表示されない",
     "privacy": "unlisted",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

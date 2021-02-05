@@ -11,8 +11,8 @@ import LogInScreen from './src/screens/LogInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 
 import { firebaseConfig } from './env';
-
-const Stack = createStackNavigator();
+// firestoreへ接続
+require('firebase/firestore');
 
 // firebaseのapi keyは公開してもいいと公式がいっている(githubなど)
 // しかし、実際はあまり公開しない。
@@ -22,6 +22,7 @@ if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
@@ -30,7 +31,7 @@ export default function App() {
       {/* initialRouteNameを変更すると自由にコンポーネントを移動できる。 */}
       {/* Stack.Navigatorはページの履歴を積み上げてくれる。 */}
       <Stack.Navigator
-        initialRouteName="SignUp"
+        initialRouteName="LogIn"
         screenOptions={{
           headerStyle: { backgroundColor: '#467FD3' },
           headerTitleStyle: { color: '#fff' },

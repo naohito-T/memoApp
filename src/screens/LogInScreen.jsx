@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert
 } from 'react-native';
@@ -12,6 +12,23 @@ export default function LogInScreen(props) {
   // emailもsetEmailも変数の名前は自由。ただし慣習としてsetXXXするのが慣例
   const [email, setEmail] = useState(''); // ('')初期値
   const [password, setPassword] = useState('');
+
+  // propsが変わる度に毎回実行される(正確には毎回のrenderingの度に実行される。)
+  useEffect(() => {
+    // ログイン状態を監視できる。
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'MemoList' }],
+        });
+      }
+    });
+    // ログインスクリーンがアンムーンされる瞬間に監視を停止してくれる。
+    return unsubscribe;
+  }, []);
+  // 空の配列を配置することで画面がrenderingされた際に一度だけ実行されるようになる。
+  // []に
 
   const handlePress = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)

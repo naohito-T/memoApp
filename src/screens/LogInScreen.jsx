@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // useEffect ログインした瞬間に処理を実行できるようになる。
 import {
-  View, Text, TextInput, StyleSheet, TouchableOpacity, Alert
+  View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native';
 import firebase from 'firebase';
 import Button from '../components/Button';

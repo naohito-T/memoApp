@@ -21,12 +21,25 @@ export default function MemoCreateScreen(props) {
       updateAt: new Date(),
     })
       .then((docRef) => {
-        console.log('Created!', docRef.id); // ドキュメントの参照からdate()で中身を参照できる。
+        console.log('Created!', docRef.id); // 作成されたドキュメントへの参照。ドキュメントの参照からdate()で中身を参照できる。
         navigation.goBack();
       })
       .catch((error) => {
         console.log('Error!', error);
       });
+    // if (a == null) {
+    //   console.log('nullだよ');
+    // } else {
+    // console.log('nullじゃないよ');
+    // console.log(a);
+    // nullじゃないよ 以下出力
+    // Promise {
+    //   "_U": 0,
+    //   "_V": 0,
+    //   "_W": null,
+    //   "_X": null,
+    // }
+    // }
   };
 
   return (

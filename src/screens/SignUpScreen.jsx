@@ -26,7 +26,6 @@ export default function SignUpScreen(props) {
         });
       })
       .catch((error) => {
-        console.log(error.code, error.message);
         Alert.alert(error.code);
       });
   };

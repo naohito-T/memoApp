@@ -10,7 +10,7 @@ export default function LogOutButton() {
   const handlePress = () => {
     firebase.auth().signOut()
       .then(() => {
-        // react hooksは他のfunctionの中に入れてはいけない。
+        // react hooksはコンポーネントの直下に置かないといけない。他のfunctionの中に入れてはいけない。
         // const navigation = useNavigation();
         navigation.reset({
           index: 0,

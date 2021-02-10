@@ -4,6 +4,8 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import Button from '../components/Button';
+import Loading from '../components/Loading';
+import { translateErrors } from '../utils';
 
 export default function LogInScreen(props) {
   const { navigation } = props;
@@ -12,6 +14,7 @@ export default function LogInScreen(props) {
   // emailもsetEmailも変数の名前は自由。ただし慣習としてsetXXXするのが慣例
   const [email, setEmail] = useState(''); // ('')初期値
   const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(true);
 
   // propsが変わる度に毎回実行される(正確には毎回のrenderingの度に実行される。)
   useEffect(() => {
@@ -22,6 +25,8 @@ export default function LogInScreen(props) {
           index: 0,
           routes: [{ name: 'MemoList' }],
         });
+      } else {
+        setLoading(false);
       }
     });
     // ログインスクリーンがアンムーンされる瞬間に監視を停止してくれる。
@@ -31,6 +36,7 @@ export default function LogInScreen(props) {
   // []に
 
   const handlePress = () => {
+    setLoading(true);
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredentail) => {
         const { user } = userCredentail;
@@ -41,12 +47,17 @@ export default function LogInScreen(props) {
         });
       })
       .catch((error) => {
-        Alert.alert(error.code);
+        const errorMsg = translateErrors(error.code);
+        Alert.alert(errorMsg.title, errorMsg.description);
+      })
+      .then(() => { // 成功でも失敗でも実行する処理
+        setLoading(false);
       });
   };
 
   return (
     <View style={styles.container}>
+      <Loading isLoading={isLoading} />
       <View style={styles.inner}>
         <Text style={styles.title}>Log In</Text>
         <TextInput

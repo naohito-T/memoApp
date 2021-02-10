@@ -55,7 +55,7 @@ export default function MemoDetailScreen(props) {
       <CircleButton
         style={{ top: 60, bottom: 'auto' }}
         name="edit-2"
-        onPress={() => { navigation.navigate('MemoEdit'); }}
+        onPress={() => { navigation.navigate('MemoEdit', { id: memo.id, bodyText: memo.bodyText }); }}
       />
       {/* navigate()に渡すものはApp.jsxで定義されたnameの部分 */}
       {/* オブジェクトを渡して上げるには{ { } }で囲んでね。 */}

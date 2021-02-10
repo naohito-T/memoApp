@@ -3,6 +3,7 @@ import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native';
 import firebase from 'firebase';
+import { translateErrors } from '../utils';
 
 import Button from '../components/Button';
 
@@ -26,7 +27,8 @@ export default function SignUpScreen(props) {
         });
       })
       .catch((error) => {
-        Alert.alert(error.code);
+        const errorMsg = translateErrors(error.code);
+        Alert.alert(errorMsg.title, errorMsg.description);
       });
   };
   return (
